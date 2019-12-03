@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body_content %}
+	<p>Edit your account</p>
+	<div class="form">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<div class="form-group">
+				{{ form.email.label }}
+				{% if form.email.errors %}
+					{{ form.email }}
+					<div class="error">
+						{% for error in form.email.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.email }}
+				{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+				{{ form.submit }}
+			</div>
+		</form>
+	</div>
+{% endblock body_content %}
+
