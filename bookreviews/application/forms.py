@@ -16,7 +16,7 @@ class ReviewsForm(FlaskForm):
              validators=[DataRequired(), Length(min=4, max=100)])
 
     rating = IntegerField('Rating',
-             validators=[DataRequired(), NumberRange(min=0, max=10])
+             validators=[DataRequired(), NumberRange(min=0, max=10)])
 
     review = StringField('Review',
              validators=[DataRequired(), Length(min=4, max=100)])
