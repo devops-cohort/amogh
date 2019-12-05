@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_login import LoginManager, current_user
 from wtforms import BooleanField, SubmitField, StringField, PasswordField, IntegerField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from application import app
 from application.models import Users
 
@@ -16,7 +16,7 @@ class ReviewsForm(FlaskForm):
              validators=[DataRequired(), Length(min=4, max=100)])
 
     rating = IntegerField('Rating',
-             validators=[DataRequired()])
+             validators=[DataRequired(), NumberRange(min=0, max=10])
 
     review = StringField('Review',
              validators=[DataRequired(), Length(min=4, max=100)])
