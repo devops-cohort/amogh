@@ -55,5 +55,22 @@
 			</div>
 		</form>
 	</div>
+
+<p>View your reviews here!</p>
+{% for post in reviews %}
+	<div>
+		<h3>{{ post.title }}</h3>
+		<span>by <i>{{ post.user.first_name }} {{ post.user.last_name }}</i></span>
+		<span>on the <i>{{ post.date_posted }}</i></span>
+		<p>Author: {{ post.author }}</p>
+		<p>Rating: {{ post.rating }}/10</p>
+		<p>Review: {{ post.review }}</p>
+		<form method="POST" action="./edit/{{ post.id }}">
+			<input type="submit" value="Edit" name="edit">
+		</form>
+	</div>
+{% endfor %}
+	
+
 {% endblock body_content %}
 

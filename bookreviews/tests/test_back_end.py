@@ -54,14 +54,40 @@ class TestFeatures(TestBase):
         """
 
         # create test review
-        user = Users(first_name="Bob", last_name="Jones", email="bobjones@yahoo.com", password="password")
-        review = Reviews(title="example", author="anon", rating="5", review="Mediocre", user_id="1")
+        review = Reviews(title="example", author="anon", rating="5", review="Mediocre", user_id="2")
 
         #save review to database
         db.session.add(review)
         db.session.commit
 
         self.assertEqual(Reviews.query.count(), 1)
+
+    def test_user(self):
+        """
+        Test number of users in user table and user information after creating, updating and deleting a record
+        """
+
+        # create test review
+        user = Users(first_name="Nick", last_name="Jones", email="nickjones@yahoo.com", password="password")
+    
+
+        #save review to database
+        db.session.add(user)
+        db.session.commit
+
+        self.assertEqual(Users.query.count(), 3)
+
+        #update information
+        user.first_name = "Nicholas"
+        db.session.commit
+
+        self.assertEqual(Users.query.filter_by(email='nickjones@yahoo.com').first().first_name, "Nicholas")
+        
+        #delete record
+        db.session.delete(user)
+        db.session.commit
+
+        self.assertEqual(Users.query.count(), 2)
 
     def test_login_view(self):
         """
@@ -79,6 +105,47 @@ class TestFeatures(TestBase):
         response = self.client.get(target_url)
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, redirect_url)
+
+    def test_post_view(self):
+        """
+        Test that the post page is inaccessiable without login and redirects to the login page and then to the dashboard
+        """
+        target_url = url_for('post', user_id=2)
+        redirect_url = url_for('login', next=target_url)
+        response = self.client.get(target_url)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, redirect_url)
+
+
+    def test_home_view(self):
+        """
+        Test that the home page is accessible without login
+        """
+        response = self.client.get(url_for('home'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_about_view(self):
+        """
+        Test that the about page is accessible without login
+        """
+        response = self.client.get(url_for('about'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_register_view(self):
+        """
+        Test that the register page is accessible without login
+        """
+        response = self.client.get(url_for('register'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_reviews_view(self):
+        """
+        Test that the login page is accessible without login
+        """
+        response = self.client.get(url_for('reviews'))
+        self.assertEqual(response.status_code, 200)
+
+
 
 
     

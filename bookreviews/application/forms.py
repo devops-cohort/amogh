@@ -23,6 +23,8 @@ class ReviewsForm(FlaskForm):
     
     submit = SubmitField('Submit')
 
+    delete = SubmitField('Delete review')
+
 class LoginForm(FlaskForm):
     email = StringField('Email',
             validators=[DataRequired(), Email()])

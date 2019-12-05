@@ -110,26 +110,31 @@ def account():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-    return render_template('account.html', title='Account', form=form)
+    postData = Reviews.query.filter_by(user_id=current_user.get_id()).all()
+    return render_template('account.html', title='Account', form=form, account=postData)
 
 @app.route('/edit/<int:review_id>', methods =['GET', 'POST'])
 def edit(review_id):   
     form = ReviewsForm()
-    print(review_id)
     review = Reviews.query.filter_by(id=review_id).first()
     if form.validate_on_submit():
-        review.title = form.title.data
-        review.author = form.author.data
-        review.rating = form.rating.data
-        review.review = form.rating.data
-        db.session.commit()
-        return redirect (url_for('home'))
+        if form.delete.data:
+            db.session.delete(review)
+            db.session.commit()
+            return redirect (url_for('reviews'))
+        elif form.submit.data:
+            review.title = form.title.data
+            review.author = form.author.data
+            review.rating = form.rating.data
+            review.review = form.rating.data
+            db.session.commit()
+            return redirect (url_for('home'))
     elif request.method == 'GET':
         form.title.data = review.title
         form.author.data = review.author
         form.rating.data = review.rating
         form.review.data = review.review
-    return render_template('post.html', title='Edit', form=form)
+    return render_template('edit.html', title='Edit', form=form)
 
 
 
