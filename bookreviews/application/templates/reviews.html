@@ -10,6 +10,9 @@
 		<p>Author: {{ post.author }}</p>
 		<p>Rating: {{ post.rating }}/10</p>
 		<p>Review: {{ post.review }}</p>
+		<form method="POST" action="./edit/{{ post.id }}">
+			<input type="submit" value="{{post.id}}" name="reviewid">
+		</form>
 	</div>
 {% endfor %}
 	

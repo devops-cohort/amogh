@@ -69,6 +69,8 @@ class UpdateAccountForm(FlaskForm):
 
     submit = SubmitField('Update')
 
+    delete = SubmitField('Delete account')
+
     def validate_email(self, email):
         if email.data != current_user.email:
             user = Users.query.filter_by(email=email.data).first()

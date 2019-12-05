@@ -92,17 +92,44 @@ def logout():
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        current_user.first_name = form.first_name.data
-        current_user.last_name = form.last_name.data
-        current_user.email = form.email.data
-        db.session.commit()
-        return redirect(url_for('account'))
+        if form.delete.data:
+            user_id = Users.query.filter_by(id=current_user.get_id()).first()
+            db.session.delete(user_id)
+            review_id = Reviews.query.filter_by(user_id=None)
+            for deleted in review_id:
+                db.session.delete(deleted)
+            db.session.commit()
+            return redirect (url_for('login'))
+        elif form.submit.data:
+            current_user.first_name = form.first_name.data
+            current_user.last_name = form.last_name.data
+            current_user.email = form.email.data
+            db.session.commit()
+            return redirect(url_for('account'))
     elif request.method == 'GET':
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
     return render_template('account.html', title='Account', form=form)
 
+@app.route('/edit/<int:review_id>', methods =['GET', 'POST'])
+def edit(review_id):   
+    form = ReviewsForm()
+    print(review_id)
+    review = Reviews.query.filter_by(id=review_id).first()
+    if form.validate_on_submit():
+        review.title = form.title.data
+        review.author = form.author.data
+        review.rating = form.rating.data
+        review.review = form.rating.data
+        db.session.commit()
+        return redirect (url_for('home'))
+    elif request.method == 'GET':
+        form.title.data = review.title
+        form.author.data = review.author
+        form.rating.data = review.rating
+        form.review.data = review.review
+    return render_template('post.html', title='Edit', form=form)
 
 
 
