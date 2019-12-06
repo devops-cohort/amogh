@@ -43,7 +43,7 @@
 7. Issues with gathering documentation (TREAT)
    Low likelihood, medium impact
    Explanation:
-   Low likelihood because sufficient documentation is not difficult to gather for this project.
+   Low likelihood because it is not difficult to gather sufficient documentation for this project.
    Medium impact because the application would still function but there would be no evidence of my planning or of test coverage.
    I would treat this by ensuring I have completed some of my documentation well in advance.
 
