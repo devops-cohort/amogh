@@ -123,30 +123,30 @@ def edit(review_id):
         allid = all.id
         list.append(allid)
     if review_id in list:
+        print('reviewid')
         form = EditForm()
-        if request.method == 'GET':
-            form.title.data = review.title
-            form.author.data = review.author
-            form.rating.data = review.rating
-            form.review.data = review.review
-        elif form.validate_on_submit():
+        if form.validate_on_submit():
+            print('elif')
             if form.delete.data:
+                print('delete')
                 db.session.delete(review)
                 db.session.commit()
                 return redirect (url_for('reviews'))
             elif form.submit.data:
+                print('submit')
                 review.title = form.title.data
                 review.author = form.author.data
                 review.rating = form.rating.data
                 review.review = form.review.data
                 db.session.commit()
                 return redirect (url_for('home'))
-        #if request.method == 'GET':
-           # form.title.data = review.title
-           # form.author.data = review.author
-           # form.rating.data = review.rating
-           # form.review.data = review.review
+        elif request.method == 'GET':
+            form.title.data = review.title
+            form.author.data = review.author
+            form.rating.data = review.rating
+            form.review.data = review.review
     else:
+        print('else')
         return redirect (url_for ('home'))
     return render_template('edit.html', title='Edit', form=form)
 

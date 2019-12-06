@@ -65,7 +65,7 @@
 		<p>Author: {{ post.author }}</p>
 		<p>Rating: {{ post.rating }}/10</p>
 		<p>Review: {{ post.review }}</p>
-		<form method="POST" action="./edit/{{ post.id }}">
+		<form method="GET" method="POST" action="./edit/{{ post.id }}">
 			<input type="submit" value="Edit" name="edit">
 		</form>
 	</div>
