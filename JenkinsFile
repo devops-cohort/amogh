@@ -4,8 +4,7 @@ pipeline{
         stages{
                 stage('--Install service script and stop old service--'){
                         steps{
-                                sh '''cd bookreviews/
-                                      sudo cp flask-app.service /etc/systemd/system/
+                                sh '''sudo cp flask-app.service /etc/systemd/system/
                                       sudo systemctl daemon-reload
                                       sudo systemctl stop flask-app
                                       '''
