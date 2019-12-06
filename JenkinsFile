@@ -33,8 +33,8 @@ pipeline{
                 stage('--testing--'){
                         steps{
                                 sh '''pytest --cov --cov-report html
-                                        mv ./htmlcov/index.html ./documentation/test_reports/
-                                        rm -rf htmlcov/
+                                        mv ./htmlcov/index.html ./documentation/
+                                        rm -rf ./htmlcov/
                                         EOF
                                         '''
                         }
