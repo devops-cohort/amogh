@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body_content %}
-	<p>Edit your account</p>
+	<p> <font size="+2"> Edit your account: </font> </p>
 	<div class="form">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
@@ -47,16 +47,16 @@
 			</div>
 			<br>
 			<div class="form-group">
-				{{ form.submit }}
+				{{ form.update }}
 			</div>
 			<br>
 			<div class="form-group">
 				{{ form.delete }}
 			</div>
 		</form>
-	</div>
+	</div> <br>
 
-<p>View your reviews here!</p>
+<p> <font size="+2"> View your reviews here: </font> </p>
 {% for post in account %}
 	<div>
 		<h3>{{ post.title }}</h3>
@@ -66,7 +66,7 @@
 		<p>Rating: {{ post.rating }}/10</p>
 		<p>Review: {{ post.review }}</p>
 		<form method="GET" method="POST" action="./edit/{{ post.id }}">
-			<input type="submit" value="Edit" name="edit">
+			<input type="submit" value="Edit / Delete" name="edit">
 		</form>
 	</div>
 {% endfor %}

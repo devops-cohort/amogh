@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, bcrypt, login_manager
 from application.models import Reviews, Users
-from application.forms import ReviewsForm, LoginForm, RegisterForm, UpdateAccountForm, EditForm
+from application.forms import ReviewsForm, LoginForm, RegisterForm, UpdateAccountForm
 
 
 @app.route('/')
@@ -24,7 +24,7 @@ def login():
         user=Users.query.filter_by(email=form.email.data).first()
 
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user)
             next_page = request.args.get('next')
 
             if next_page:
@@ -32,7 +32,7 @@ def login():
             else:
                 return redirect(url_for('home'))
 
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Log In', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -71,7 +71,7 @@ def post():
 
         db.session.add(postData)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('reviews'))
 
     else:
         print(form.errors)
@@ -99,13 +99,13 @@ def account():
             for deleted in review_id:
                 db.session.delete(deleted)
             db.session.commit()
-            return redirect (url_for('login'))
-        elif form.submit.data:
+            return redirect (url_for('home'))
+        elif form.update.data:
             current_user.first_name = form.first_name.data
             current_user.last_name = form.last_name.data
             current_user.email = form.email.data
             db.session.commit()
-            return redirect(url_for('account'))
+            return redirect(url_for('home'))
     elif request.method == 'GET':
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
@@ -124,7 +124,7 @@ def edit(review_id):
         list.append(allid)
     if review_id in list:
         print('reviewid')
-        form = EditForm()
+        form = ReviewsForm()
         if form.validate_on_submit():
             print('elif')
             if form.delete.data:
@@ -132,14 +132,14 @@ def edit(review_id):
                 db.session.delete(review)
                 db.session.commit()
                 return redirect (url_for('reviews'))
-            elif form.submit.data:
+            elif form.update.data:
                 print('submit')
                 review.title = form.title.data
                 review.author = form.author.data
                 review.rating = form.rating.data
                 review.review = form.review.data
                 db.session.commit()
-                return redirect (url_for('home'))
+                return redirect (url_for('reviews'))
         elif request.method == 'GET':
             form.title.data = review.title
             form.author.data = review.author

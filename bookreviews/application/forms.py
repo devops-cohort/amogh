@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import LoginManager, current_user
-from wtforms import BooleanField, SubmitField, StringField, PasswordField, IntegerField
+from wtforms import SubmitField, StringField, PasswordField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from application import app
 from application.models import Users
@@ -23,6 +23,8 @@ class ReviewsForm(FlaskForm):
     
     submit = SubmitField('Submit')
 
+    update = SubmitField('Update')
+
     delete = SubmitField('Delete review')
 
 class LoginForm(FlaskForm):
@@ -31,8 +33,6 @@ class LoginForm(FlaskForm):
 
     password = PasswordField('Password', 
                validators=[DataRequired()])
-                                        
-    remember = BooleanField('Remember me')
     
     submit = SubmitField('Log In')
 
@@ -69,7 +69,7 @@ class UpdateAccountForm(FlaskForm):
     email = StringField('Email',
             validators=[DataRequired(), Email(), Length(min=1, max=50)])
 
-    submit = SubmitField('Update')
+    update = SubmitField('Update')
 
     delete = SubmitField('Delete account')
 
@@ -78,23 +78,6 @@ class UpdateAccountForm(FlaskForm):
             user = Users.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('Email is already in use!')
-
-class EditForm(FlaskForm):
-    title = StringField('Title',
-            validators=[DataRequired(), Length(min=1, max=50)])
-
-    author = StringField('Author',
-             validators=[DataRequired(), Length(min=1, max=50)])
-
-    rating = IntegerField('Rating',
-             validators=[DataRequired(), NumberRange(min=0, max=10)])
-
-    review = StringField('Review',
-             validators=[DataRequired(), Length(min=1, max=50)])
-    
-    submit = SubmitField('Submit')
-
-    delete = SubmitField('Delete review')
 
 
 
