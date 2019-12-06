@@ -1,9 +1,0 @@
------------ coverage: platform linux, python 3.5.3-final-0 -----------
-Name                      Stmts   Miss  Cover
----------------------------------------------
-application/__init__.py      13      0   100%
-application/forms.py         49      7    86%
-application/models.py        22      2    91%
-application/routes.py       106     74    30%
----------------------------------------------
-TOTAL                       190     83    56%
