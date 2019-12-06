@@ -62,6 +62,18 @@ class TestFeatures(TestBase):
 
         self.assertEqual(Reviews.query.count(), 1)
 
+        #update information
+        review.author = "Anonymous"
+        db.session.commit
+
+        self.assertEqual(Reviews.query.filter_by(title='example').first().author, "Anonymous")
+
+        #delete record
+        db.session.delete(review)
+        db.session.commit
+
+        self.assertEqual(Reviews.query.count(), 0)
+
     def test_user(self):
         """
         Test number of users in user table and user information after creating, updating and deleting a record

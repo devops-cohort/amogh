@@ -79,5 +79,22 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('Email is already in use!')
 
+class EditForm(FlaskForm):
+    title = StringField('Title',
+            validators=[DataRequired(), Length(min=4, max=100)])
+
+    author = StringField('Author',
+             validators=[DataRequired(), Length(min=4, max=100)])
+
+    rating = IntegerField('Rating',
+             validators=[DataRequired(), NumberRange(min=0, max=10)])
+
+    review = StringField('Review',
+             validators=[DataRequired(), Length(min=4, max=100)])
+    
+    submit = SubmitField('Submit')
+
+    delete = SubmitField('Delete review')
+
 
 

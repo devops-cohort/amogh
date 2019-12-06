@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request
 from flask_login import login_user, current_user, logout_user, login_required
 from application import app, db, bcrypt, login_manager
 from application.models import Reviews, Users
-from application.forms import ReviewsForm, LoginForm, RegisterForm, UpdateAccountForm
+from application.forms import ReviewsForm, LoginForm, RegisterForm, UpdateAccountForm, EditForm
 
 
 @app.route('/')
@@ -93,7 +93,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.delete.data:
-            user_id = Users.query.filter_by(id=current_user.get_id()).first()
+            user_id = Users.query.filter_by(id=current_user.id).first()
             db.session.delete(user_id)
             review_id = Reviews.query.filter_by(user_id=None)
             for deleted in review_id:
@@ -114,26 +114,35 @@ def account():
     return render_template('account.html', title='Account', form=form, account=postData)
 
 @app.route('/edit/<int:review_id>', methods =['GET', 'POST'])
+@login_required
 def edit(review_id):   
-    form = ReviewsForm()
     review = Reviews.query.filter_by(id=review_id).first()
-    if form.validate_on_submit():
-        if form.delete.data:
-            db.session.delete(review)
-            db.session.commit()
-            return redirect (url_for('reviews'))
-        elif form.submit.data:
-            review.title = form.title.data
-            review.author = form.author.data
-            review.rating = form.rating.data
-            review.review = form.rating.data
-            db.session.commit()
-            return redirect (url_for('home'))
-    elif request.method == 'GET':
-        form.title.data = review.title
-        form.author.data = review.author
-        form.rating.data = review.rating
-        form.review.data = review.review
+    user_reviews=Reviews.query.filter_by(user_id=current_user.get_id())
+    list=[]
+    for all in user_reviews:
+        allid = all.id
+        list.append(allid)
+    if review_id in list:
+        form = EditForm()
+        if form.validate_on_submit():
+            if form.delete.data:
+                db.session.delete(review)
+                db.session.commit()
+                return redirect (url_for('reviews'))
+            elif form.submit.data:
+                review.title = form.title.data
+                review.author = form.author.data
+                review.rating = form.rating.data
+                review.review = form.review.data
+                db.session.commit()
+                return redirect (url_for('home'))
+        elif request.method == 'GET':
+            form.title.data = review.title
+            form.author.data = review.author
+            form.rating.data = review.rating
+            form.review.data = review.review
+    else:
+        return redirect (url_for ('home'))
     return render_template('edit.html', title='Edit', form=form)
 
 
