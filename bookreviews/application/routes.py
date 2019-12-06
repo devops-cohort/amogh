@@ -110,21 +110,26 @@ def account():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-    postData = Reviews.query.filter_by(user_id=current_user.get_id()).all()
+    postData = Reviews.query.filter_by(user_id=current_user.id).all()
     return render_template('account.html', title='Account', form=form, account=postData)
 
 @app.route('/edit/<int:review_id>', methods =['GET', 'POST'])
 @login_required
 def edit(review_id):   
     review = Reviews.query.filter_by(id=review_id).first()
-    user_reviews=Reviews.query.filter_by(user_id=current_user.get_id())
+    user_reviews=Reviews.query.filter_by(user_id=current_user.id)
     list=[]
     for all in user_reviews:
         allid = all.id
         list.append(allid)
     if review_id in list:
         form = EditForm()
-        if form.validate_on_submit():
+        if request.method == 'GET':
+            form.title.data = review.title
+            form.author.data = review.author
+            form.rating.data = review.rating
+            form.review.data = review.review
+        elif form.validate_on_submit():
             if form.delete.data:
                 db.session.delete(review)
                 db.session.commit()
@@ -136,11 +141,11 @@ def edit(review_id):
                 review.review = form.review.data
                 db.session.commit()
                 return redirect (url_for('home'))
-        elif request.method == 'GET':
-            form.title.data = review.title
-            form.author.data = review.author
-            form.rating.data = review.rating
-            form.review.data = review.review
+        #if request.method == 'GET':
+           # form.title.data = review.title
+           # form.author.data = review.author
+           # form.rating.data = review.rating
+           # form.review.data = review.review
     else:
         return redirect (url_for ('home'))
     return render_template('edit.html', title='Edit', form=form)

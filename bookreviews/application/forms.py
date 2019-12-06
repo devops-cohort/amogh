@@ -10,16 +10,16 @@ login_manager.login_view = 'login'
 
 class ReviewsForm(FlaskForm):
     title = StringField('Title',
-            validators=[DataRequired(), Length(min=4, max=100)])
+            validators=[DataRequired(), Length(min=1, max=50)])
 
     author = StringField('Author',
-             validators=[DataRequired(), Length(min=4, max=100)])
+             validators=[DataRequired(), Length(min=1, max=50)])
 
     rating = IntegerField('Rating',
              validators=[DataRequired(), NumberRange(min=0, max=10)])
 
     review = StringField('Review',
-             validators=[DataRequired(), Length(min=4, max=100)])
+             validators=[DataRequired(), Length(min=1, max=500)])
     
     submit = SubmitField('Submit')
 
@@ -38,16 +38,16 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     first_name = StringField('First name',
-                 validators=[DataRequired(), Length(min=4, max=100)])
+                 validators=[DataRequired(), Length(min=1, max=50)])
 
     last_name = StringField('Last name',
-                validators=[DataRequired(), Length(min=4, max=100)])
+                validators=[DataRequired(), Length(min=1, max=50)])
 
     email = StringField('Email',
-            validators=[DataRequired(), Email()])
+            validators=[DataRequired(), Email(), Length(min=1, max=50)])
 
     password = PasswordField('Password',
-               validators=[DataRequired()])
+               validators=[DataRequired(), Length(min=1, max=150)])
 
     confirm_password = PasswordField('Confirm Password',
                        validators= [DataRequired(), EqualTo('password')])
@@ -61,13 +61,13 @@ class RegisterForm(FlaskForm):
 
 class UpdateAccountForm(FlaskForm):
     first_name = StringField('First Name',
-                 validators=[DataRequired(), Length(min=4, max=30)])
+                 validators=[DataRequired(), Length(min=1, max=50)])
 
     last_name = StringField('Last Name',
-                validators=[DataRequired(), Length(min=4, max=30)])
+                validators=[DataRequired(), Length(min=1, max=50)])
 
     email = StringField('Email',
-            validators=[DataRequired(), Email()])
+            validators=[DataRequired(), Email(), Length(min=1, max=50)])
 
     submit = SubmitField('Update')
 
@@ -81,16 +81,16 @@ class UpdateAccountForm(FlaskForm):
 
 class EditForm(FlaskForm):
     title = StringField('Title',
-            validators=[DataRequired(), Length(min=4, max=100)])
+            validators=[DataRequired(), Length(min=1, max=50)])
 
     author = StringField('Author',
-             validators=[DataRequired(), Length(min=4, max=100)])
+             validators=[DataRequired(), Length(min=1, max=50)])
 
     rating = IntegerField('Rating',
              validators=[DataRequired(), NumberRange(min=0, max=10)])
 
     review = StringField('Review',
-             validators=[DataRequired(), Length(min=4, max=100)])
+             validators=[DataRequired(), Length(min=1, max=50)])
     
     submit = SubmitField('Submit')
 
