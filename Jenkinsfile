@@ -40,8 +40,9 @@ pipeline{
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB
                                       sudo su - pythonadm << EOF
-                                      pip3 install pytest
-                                      pip3 install pytest-cov
+                                      cd /opt/flask-app/amogh/bookreviews
+                                      . venv/bin/activate
+                             
                                       python3 -m pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
                                       rm -rf ./htmlcov/
