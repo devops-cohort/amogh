@@ -29,7 +29,7 @@ pipeline{
                                 sh '''ssh 35.233.83.43 << BOB 
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
-                                      virtualenv -p python3 venv
+                                      sudo virtualenv -p python3 venv
                                       source venv/bin/activate
                                       pip install -r requirements.txt
                                       '''
