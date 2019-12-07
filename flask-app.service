@@ -3,6 +3,6 @@ Description=Flask Application
 [Service]
 User=pythonadm
 WorkingDirectory=/opt/flask-app/amogh/bookreviews
-ExecStart=/bin/bash -c 'cd /opt/flask-app/amogh/bookreviews && source ~/.bashrc && . ./venv/bin/activate && python3 ./app.py'
+ExecStart=/bin/bash -c 'cd /opt/flask-app/amogh/bookreviews && source ~/.bashrc && . ./venv/bin/activate && gunicorn --bind=0.0.0.0:8001 --workers=4 application:app'
 [Install]
 WantedBy=multi-user.target
