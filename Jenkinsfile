@@ -39,7 +39,7 @@ pipeline{
                 stage('--testing--'){
                         steps{
                                 sh '''ssh 35.233.83.43 << BOB
-                                      pip3 install pytest
+                                      sudo su - pythonadm << EOF
                                       pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
                                       rm -rf ./htmlcov/
