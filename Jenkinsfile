@@ -30,8 +30,8 @@ pipeline{
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
                                       pip3 install virtualenv
-                                      sudo python3 -m virtualenv venv
-                                   
+                                      python3 -m virtualenv venv
+                                      . venv/bin/activate
                                       pip3 install -r requirements.txt
                                       '''
                         }
