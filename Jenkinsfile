@@ -41,7 +41,7 @@ pipeline{
                                 sh '''ssh 35.205.131.101 << BOB
                                       sudo su - pythonadm << EOF
                                       pip3 install pytest
-                                      python -m pytest --cov --cov-report html
+                                      python3 -m pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
                                       rm -rf ./htmlcov/
                                       EOF
