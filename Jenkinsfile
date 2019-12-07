@@ -5,9 +5,6 @@ pipeline{
                 stage('--Install service script and stop old service--'){
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB
-                                      rm -rf amogh/
-                                      git clone https://github.com/devops-cohort/amogh.git
-                                      cd amogh/
                                       sudo cp flask-app.service /etc/systemd/system/
                                       sudo systemctl daemon-reload
                                       sudo systemctl stop flask-app
@@ -28,7 +25,7 @@ pipeline{
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB 
                                       sudo su - pythonadm << EOF
-                                      cd /opt/flask-app/amogh/bookreviews
+                                      cd /opt/flask-app/bookreviews
                                       python3 -m virtualenv venv
                                       . venv/bin/activate
                                       pip3 install -r requirements.txt
@@ -39,7 +36,7 @@ pipeline{
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB
                                       sudo su - pythonadm << EOF
-                                      cd /opt/flask-app/amogh/bookreviews
+                                      cd /opt/flask-app/bookreviews
                                       . venv/bin/activate
                                       python3 -m pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
@@ -50,7 +47,7 @@ pipeline{
                 stage('--deployment--'){
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB
-                                      cd /opt/flask-app/amogh
+                                      cd /opt/flask-app
                                       sudo systemctl start flask-app
                                       '''
                         }
