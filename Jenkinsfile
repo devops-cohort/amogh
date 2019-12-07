@@ -31,8 +31,8 @@ pipeline{
                                       cd /opt/flask-app/amogh/bookreviews
                                       pip3 install virtualenv
                                       sudo python3 -m virtualenv venv
-                                      . venv/bin/activate
-                                      pip install -r requirements.txt
+                                   
+                                      pip3 install -r requirements.txt
                                       '''
                         }
                 }
