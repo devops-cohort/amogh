@@ -5,6 +5,7 @@ pipeline{
                 stage('--Install service script and stop old service--'){
                         steps{
                                 sh '''ssh 35.233.83.43 << BOB
+                                      rm -rf amogh/
                                       git clone https://github.com/devops-cohort/amogh.git
                                       cd amogh/
                                       sudo cp flask-app.service /etc/systemd/system/
@@ -18,7 +19,7 @@ pipeline{
                                 sh '''ssh 35.233.83.43 << BOB
                                       install_dir=/opt/flask-app
                                       sudo rm -rf ${install_dir}
-                                      sudo mkdir "${install_dir}"
+                                      sudo mkdir ${install_dir}
                                       sudo cp -r ./* ${install_dir}
                                       sudo chown -R pythonadm:pythonadm ${install_dir}
                                       '''
