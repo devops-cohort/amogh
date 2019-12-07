@@ -4,7 +4,8 @@ pipeline{
         stages{
                 stage('--Install service script and stop old service--'){
                         steps{
-                                sh '''sudo cp flask-app.service /etc/systemd/system/
+                                sh '''ssh 35.233.83.43 << BOB
+                                      sudo cp flask-app.service /etc/systemd/system/
                                       sudo systemctl daemon-reload
                                       sudo systemctl stop flask-app
                                       '''
@@ -12,7 +13,8 @@ pipeline{
                 }  
                 stage('--Install application files--'){
                         steps{
-                                sh '''install_dir=/opt/flask-app
+                                sh '''ssh 35.233.83.43 << BOB
+                                      install_dir=/opt/flask-app
                                       sudo rm -rf ${install_dir}
                                       sudo mkdir ${install_dir}
                                       sudo cp -r ./* ${install_dir}
@@ -22,28 +24,31 @@ pipeline{
                 }
                 stage('--Configure python virtual environment and install dependencies--'){
                         steps{
-                                sh '''sudo su - pythonadm << EOF
-                                       cd ${install_dir}
-                                       cd bookreviews/
-                                       virtualenv -p python3 venv
-                                       source venv/bin/activate
-                                       pip install -r requirements.txt
-                                       '''
+                                sh '''ssh 35.233.83.43 << BOB 
+                                      sudo su - pythonadm << EOF
+                                      cd ${install_dir}
+                                      cd bookreviews/
+                                      virtualenv -p python3 venv
+                                      source venv/bin/activate
+                                      pip install -r requirements.txt
+                                      '''
                         }
                 }
                 stage('--testing--'){
                         steps{
-                                sh '''pytest --cov --cov-report html
-                                        mv ./htmlcov/index.html ./documentation/
-                                        rm -rf ./htmlcov/
-                                        EOF
-                                        '''
+                                sh '''ssh 35.233.83.43 << BOB
+                                      pytest --cov --cov-report html
+                                      mv ./htmlcov/index.html ./documentation/
+                                      rm -rf ./htmlcov/
+                                      EOF
+                                      '''
                         }
                 }
                 stage('--deployment--'){
                         steps{
-                                sh '''sudo systemctl start flask-app
-                                          '''
+                                sh '''ssh 35.233.83.43 << BOB
+                                      sudo systemctl start flask-app
+                                      '''
                         }
                 }
         }
