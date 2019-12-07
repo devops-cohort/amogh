@@ -30,7 +30,7 @@ pipeline{
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
                                       sudo virtualenv -p python3 venv
-                                      . venv/bin/activate
+                                      sudo . venv/bin/activate
                                       pip install -r requirements.txt
                                       '''
                         }
