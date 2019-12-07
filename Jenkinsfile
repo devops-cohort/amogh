@@ -19,6 +19,7 @@ pipeline{
                                 sh '''ssh 35.233.83.43 << BOB
                                       install_dir=/opt/flask-app
                                       sudo rm -rf ${install_dir}
+                                      sudo echo ${install_dir}
                                       sudo mkdir ${install_dir}
                                       sudo cp -r ./* ${install_dir}
                                       sudo chown -R pythonadm:pythonadm ${install_dir}
