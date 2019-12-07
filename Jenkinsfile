@@ -29,7 +29,7 @@ pipeline{
                                 sh '''ssh 35.205.131.101 << BOB 
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
-                                      pip3 install virtualenv
+                             
                                       python3 -m virtualenv venv
                                       . venv/bin/activate
                                       pip3 install -r requirements.txt
@@ -40,8 +40,8 @@ pipeline{
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB
                                       sudo su - pythonadm << EOF
-                                      pip3 install pytest
-                                      pytest --cov --cov-report html
+                             
+                                      python -m pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
                                       rm -rf ./htmlcov/
                                       EOF
