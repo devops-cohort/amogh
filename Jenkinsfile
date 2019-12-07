@@ -17,7 +17,6 @@ pipeline{
                 stage('--Install application files--'){
                         steps{
                                 sh '''ssh 35.233.83.43 << BOB
-                                      install_dir=/opt/flask-app
                                       sudo rm -rf /opt/flask-app
                                       sudo mkdir /opt/flask-app
                                       sudo cp -r ./* /opt/flask-app
@@ -29,7 +28,7 @@ pipeline{
                         steps{
                                 sh '''ssh 35.233.83.43 << BOB 
                                       sudo su - pythonadm << EOF
-                                      cd ${install_dir}
+                                      cd /opt/flask-app
                                       cd bookreviews/
                                       virtualenv -p python3 venv
                                       source venv/bin/activate
