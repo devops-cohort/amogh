@@ -1,0 +1,26 @@
+Note: read the User Stories document for more information about the various users.
+
+Literary enthusiast:
+1. User goes on website
+2. User registers.
+3. User logs in.
+4. User makes a review.
+5. User logs out.
+6. User leaves website.
+
+Lover of reading:
+1. User goes on website.
+2. User goes on 'Reviews' page.
+3. User views reviews.
+4. User leaves website.
+
+Bookworm:
+1. User goes on website.
+2. User logs in.
+3. User goes on 'Account page'.
+4. User views account details.
+5. User can edit or delete account.
+6. User views previous reviews.
+7. User can edit or delete previous reviews.
+8. User logs out.
+9. User leaves website.

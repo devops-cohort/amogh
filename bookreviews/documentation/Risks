@@ -1,0 +1,55 @@
+1. Poor planning (TREAT)
+   Low likelihood, high impact
+   Explanantion:
+   Low likelihood because I hold planning in high regard.
+   High impact because poor planning would be fatal to any project.
+   I would treat this by starting a Trello board before I begin the project and making sure to update it regularly.
+
+2. Issues with building application (TREAT/TRANSFER)
+   Medium likelihood, high impact
+   Explanantion: 
+   Medium likelihood because I am new to coding. 
+   High impact because the application would not function without working code. 
+   I would treat this by personal diligence and transfer this by seeking help from the instructors.
+
+3. Issues with database (TREAT/TRANSFER)
+   Medium likelihood, high impact
+   Explanation:
+   Medium likelihood because SQL can be difficult to master.
+   High impact because the application would not function without a working database.
+   I would treat this by personal diligence and transfer this by seeking help from the instructors.
+
+4. Issues with version control system (TREAT/TRANSFER)
+   Low likelihood, medium impact
+   Explanation:
+   Low likelihood because Git is fairly reliable.
+   Medium impact because the application would still function but there would be no continuous integration.
+   I would treat this by personal diligence and transfer this by seeking help from the instructors.
+   
+5. Issues with CI server (TREAT/TRANSFER)
+   Medium likelihood, medium impact
+   Explanation:
+   Medium likelihood because Jenkins can be difficult to master.
+   Medium impact because the application would still function but there would be no continuous integration.
+   I would treat this by personal diligence and transfer this by seeking help from the instructors.
+
+6. Issues with running automated tests (TREAT/TRANSFER)
+   Medium likelihood, medium impact
+   Explanation:
+   Medium likelihood because I am new to coding.
+   Medium impact because I could still carry out manual testing but it would not be as effective.
+   I would treat this by personal diligence and transfer this by seeking help from the instructors.
+
+7. Issues with gathering documentation (TREAT)
+   Low likelihood, medium impact
+   Explanation:
+   Low likelihood because it is not difficult to gather sufficient documentation for this project.
+   Medium impact because the application would still function but there would be no evidence of my planning or of test coverage.
+   I would treat this by ensuring I have completed some of my documentation well in advance.
+
+8. Issues with presentation (TREAT)
+   Medium likelihood, medium impact
+   Explanation:
+   Medium likelihood because I sometimes lack confidence when presenting.
+   Medium impact because the application still function but my poor delivery would lower its appeal to my audience.
+   I would treat this by making sure to rehearse my presentation.
