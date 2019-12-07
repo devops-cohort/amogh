@@ -4,7 +4,7 @@ pipeline{
         stages{
                 stage('--Install service script and stop old service--'){
                         steps{
-                                sh '''ssh 35.233.83.43 << BOB
+                                sh '''ssh 35.205.131.101 << BOB
                                       rm -rf amogh/
                                       git clone https://github.com/devops-cohort/amogh.git
                                       cd amogh/
@@ -16,7 +16,7 @@ pipeline{
                 }  
                 stage('--Install application files--'){
                         steps{
-                                sh '''ssh 35.233.83.43 << BOB
+                                sh '''ssh 35.205.131.101 << BOB
                                       sudo rm -rf /opt/flask-app
                                       sudo mkdir /opt/flask-app
                                       sudo cp -r ./* /opt/flask-app
@@ -26,7 +26,7 @@ pipeline{
                 }
                 stage('--Configure python virtual environment and install dependencies--'){
                         steps{
-                                sh '''ssh 35.233.83.43 << BOB 
+                                sh '''ssh 35.205.131.101 << BOB 
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
                                       pip3 install virtualenv
@@ -38,7 +38,7 @@ pipeline{
                 }
                 stage('--testing--'){
                         steps{
-                                sh '''ssh 35.233.83.43 << BOB
+                                sh '''ssh 35.205.131.101 << BOB
                                       sudo su - pythonadm << EOF
                                       pip3 install pytest
                                       pytest --cov --cov-report html
@@ -50,7 +50,7 @@ pipeline{
                 }
                 stage('--deployment--'){
                         steps{
-                                sh '''ssh 35.233.83.43 << BOB
+                                sh '''ssh 35.205.131.101 << BOB
                                       sudo systemctl start flask-app
                                       '''
                         }
