@@ -46,7 +46,7 @@ pipeline{
                                       python3 -m pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
                                       rm -rf ./htmlcov/
-                                      EOF
+                                     
                                       '''
                         }
                 }
