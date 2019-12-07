@@ -1,0 +1,33 @@
+.
+├── bookreviews
+│   ├── application
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   └── templates
+│   │       ├── about.html
+│   │       ├── account.html
+│   │       ├── edit.html
+│   │       ├── home.html
+│   │       ├── layout.html
+│   │       ├── login.html
+│   │       ├── post.html
+│   │       ├── register.html
+│   │       └── reviews.html
+│   ├── app.py
+│   ├── documentation
+│   │   ├── CI Pipeline.jpg
+│   │   ├── ERD.jpg
+│   │   ├── index.html
+│   │   ├── pytestcoverage.txt
+│   │   ├── Risks
+│   │   ├── Use Cases
+│   │   └── User Stories
+│   ├── requirements.txt
+│   └── tests
+│       ├── __init__.py
+│       └── test_back_end.py
+├── flask-app.service
+├── Jenkinsfile
+└── README.md
