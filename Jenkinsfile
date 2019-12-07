@@ -5,6 +5,8 @@ pipeline{
                 stage('--Install service script and stop old service--'){
                         steps{
                                 sh '''ssh 35.233.83.43 << BOB
+                                      git clone https://github.com/devops-cohort/amogh.git
+                                      cd amogh/
                                       sudo cp flask-app.service /etc/systemd/system/
                                       sudo systemctl daemon-reload
                                       sudo systemctl stop flask-app
