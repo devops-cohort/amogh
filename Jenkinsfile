@@ -29,7 +29,6 @@ pipeline{
                                 sh '''ssh 35.205.131.101 << BOB 
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
-                             
                                       python3 -m virtualenv venv
                                       . venv/bin/activate
                                       pip3 install -r requirements.txt
@@ -42,17 +41,16 @@ pipeline{
                                       sudo su - pythonadm << EOF
                                       cd /opt/flask-app/amogh/bookreviews
                                       . venv/bin/activate
-                             
                                       python3 -m pytest --cov --cov-report html
                                       mv ./htmlcov/index.html ./documentation/
                                       rm -rf ./htmlcov/
-                                     
                                       '''
                         }
                 }
                 stage('--deployment--'){
                         steps{
                                 sh '''ssh 35.205.131.101 << BOB
+                                      cd /opt/flask-app/amogh
                                       sudo systemctl start flask-app
                                       '''
                         }
