@@ -20,6 +20,7 @@
 │   │   ├── CI Pipeline.jpg
 │   │   ├── ERD.jpg
 │   │   ├── index.html
+│   │   ├── projectstructure.txt
 │   │   ├── pytestcoverage.txt
 │   │   ├── Risks
 │   │   ├── Use Cases
