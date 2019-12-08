@@ -7,3 +7,7 @@ application/models.py        22      2    91%
 application/routes.py       106     74    30%
 ---------------------------------------------
 TOTAL                       190     83    56%
+=================================================== 9 passed, 4 warnings in 1.54s ===================================================
+
+Analysis:
+An analysis of the test coverage shows both areas of strength and areas that need improvement with regard to the implementation of testing. Particular highlights include the 100% coverage of __init__.py, and the relatively high scores of 91% and 86% on forms.py and models.py respectively. The weakest area of test coverage was on routes.py, with only 30% coverage. Overall, pytest achieved a coverage of 56%, which is a decent percentage considering that it only includes unit testing, and not integration testing. I believe that in order to improve test coverage on routes.py, we would need to include a form of integration testing such as Selenium testing, and this is a major area for potential improvement in the future.
