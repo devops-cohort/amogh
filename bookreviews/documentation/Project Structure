@@ -20,9 +20,10 @@
 │   │   ├── CI Pipeline.jpg
 │   │   ├── ERD.jpg
 │   │   ├── index.html
-│   │   ├── projectstructure.txt
-│   │   ├── pytestcoverage.txt
-│   │   ├── Risks
+│   │   ├── Project Changes
+│   │   ├── Project Structure
+│   │   ├── Risks and Final Analysis
+│   │   ├── Test Coverage and Analysis
 │   │   ├── Use Cases
 │   │   └── User Stories
 │   ├── requirements.txt
