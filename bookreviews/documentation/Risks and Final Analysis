@@ -12,7 +12,7 @@
    Medium likelihood because I am new to coding. 
    High impact because the application would not function without working code. 
    I would treat this by personal diligence and transfer this by seeking help from the instructors.
-   Final Analysis: Although I faced considerable difficulty with implementing some of the features in my project, I was able to solve   my problems before the deadline.
+   Final Analysis: Although I faced considerable difficulty with implementing some of the features in my project, I was able to solve my problems before the deadline.
 
 3. Issues with database (TREAT/TRANSFER)
    Medium likelihood, high impact
@@ -36,7 +36,7 @@
    Medium likelihood because Jenkins can be difficult to master.
    Medium impact because the application would still function but there would be no continuous integration.
    I would treat this by personal diligence and transfer this by seeking help from the instructors.
-   Final analysis: I faced considerable difficulty with setting up a CI pipeline and SSH, but I managed to resolve my problems in the   end.
+   Final analysis: I faced considerable difficulty with setting up a CI pipeline and SSH, but I managed to resolve my problems in the end.
 
 6. Issues with running automated tests (TREAT/TRANSFER)
    Medium likelihood, medium impact
